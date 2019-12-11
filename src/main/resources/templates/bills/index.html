@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${bto}">
+    <table class="table">
+
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Business</th>
+            <th>Website</th>
+        </tr>
+
+        <tr th:each="bill: ${bto.bills}">
+            <td th:text ="${bill.type}"></td>
+            <td th:text ="${bill.name}"></td>
+            <td th:text= "${bill.business}"></td>
+            <td><a th:text="${bill.website}" th:href="${bill.website}" th:target="_blank" ></a></td>
+
+
+        </tr>
+
+    </table>
+
+    </div>
+    <div class="form-group">
+        <label th:for="roommates">Number of Roommates</label>
+        <input class="form-control" name="roommates" th:value="${bto.roommates}" style="max-width:100px;"/>
+    </div>
+    <input class="right-justified" type="submit" value="Update Number of Roommates" />
+</form>
+
+
+
+
+</body>
+</html>

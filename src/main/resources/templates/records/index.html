@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+    <table class="table" th:object="${rto}">
+
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Business</th>
+            <th>Total Amount</th>
+            <th>Individual Amount</th>
+            <th>Month</th>
+            <th>Year</th>
+        </tr>
+
+        <tr th:each="bill: ${rto.records}">
+            <td th:text ="${bill.type}"></td>
+            <td th:text ="${bill.name}"></td>
+            <td th:text= "${bill.business}"></td>
+            <td th:text= "${bill.amount}" ></td>
+            <td th:text= "${bill.pay_amount}"></td>
+            <td th:text= "${bill.month}" ></td>
+            <td th:text= "${bill.year}" ></td>
+
+
+        </tr>
+
+    </table>
+
+<div class="form-group">
+    <label th:for="personal_Amount">Total Monthly Personal Amount</label>
+    <input class="form-control" name="personal_Amount" th:value="${rto.personal_amount}" style="max-width:100px;"/>
+</div>
+
+<div class="form-group">
+    <label th:for="personal_Amount">Amount Roommate(s) Owe</label>
+    <input class="form-control" name="personal_Amount" th:value="${rto.shared_amount}" style="max-width:100px;"/>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<form method="post" th:object="${records}">
+<h1>Past Records</h1><input class="right-justified" type="submit" value="Filter" />
+<table class="table">
+
+    <tr>
+        <th>
+            <label th:for="type"></label>
+            <select name="type">
+                <option th:each="type: ${types}" th:text="${type}"></option>
+            </select></th>
+        <th>
+            <label th:for="name"></label>
+            <select name="name">
+                <option th:each="name: ${names}" th:text="${name}"></option>
+            </select></th>
+        <th>
+            <label th:for="business"></label>
+            <select name="business">
+                <option th:each="business: ${businesses}" th:text="${business}"></option>
+            </select></th>
+        <th>Total Amount</th>
+        <th>Individual Amount</th>
+        <th>
+            <label th:for="month"></label>
+            <select name="month">
+                <option th:each="month: ${months}" th:text="${month}"></option>
+            </select></th>
+        <th>
+            <label th:for="year"></label>
+            <select name="year">
+                <option value="Year">Year</option>
+                <option th:each="year: ${years}" th:text="${year}"></option>
+            </select></th>
+    </tr>
+
+    <tr th:each="record: ${records}">
+        <td th:text ="${record.type}"></td>
+        <td th:text ="${record.name}"></td>
+        <td th:text= "${record.business}"></td>
+        <td th:text= "${record.amount}" ></td>
+        <td th:text= "${record.pay_amount}"></td>
+        <td th:text= "${record.month}" ></td>
+        <td th:text= "${record.year}" ></td>
+
+
+    </tr>
+
+</table>
+</form>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${bto}">
+
+    <div class="form-group">
+        <label th:for="month">Month</label>
+        <select name="month">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label th:for="year">Year</label>
+        <input class="form-control" name="year" style="max-width:100px;"/>
+    </div>
+    <input class="right-justified" type="submit" value="Add Monthly Bill" />
+</form>
+
+
+
+
+</body>
+</html>

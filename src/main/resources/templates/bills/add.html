@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${bills}">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="business">Business</label>
+        <input class="form-control" th:field="*{business}" />
+    </div>
+
+    <div class="form-group">
+        <label th:for="website">Website with https://</label>
+        <input class="form-control" th:field="*{website}" />
+    </div>
+    <div class="form-group">
+        <label th:for="*{type}"
+                th:text="Personal"></label>
+        <input type="radio"
+                   th:field="*{type}"
+                    th:value="Personal"/>
+        <label th:for="*{type}"
+                th:text="Shared"></label>
+        <input type="radio"
+                       th:field="*{type}"
+                       th:value="Shared"/>
+
+
+    </div>
+
+
+    <input type="submit" value="Add Bill" />
+</form>
+
+</body>
+</html>
